@@ -3,14 +3,17 @@
 2. For each color
     * Show 6 variations of the color using tinyColor
 ======================================= */
+let colors;
+let hexColors;
+let tiny = [];
 
-const tinyColor = require('tinyColor2');
-const tinyColor = 
-let colorArray = [];
-
-for (let i = 0; i < 4; i++) {
-    colorArray.push(tinyColor.random());
+function things() {
+    colors = document.querySelector('#input1').value.split(',');
+    console.log(colors);
+    // colors.forEach(color => {
+    //     console.log(tinycolor(color).getOriginalInput);
+    // });
+    colors.forEach(color => {
+        tiny.push(tinycolor(color));
+    });
 }
-console.log(colorArray);
-
-document.querySelector('color1').value = colorArray;
