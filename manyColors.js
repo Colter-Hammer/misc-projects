@@ -61,18 +61,8 @@ function toHex(array) {
 function applyHex(arr) {
     for (let j = 0; j < 4; j++) {
         for (let i = 0; i < 6; i++) {
-            let things;
-            if(j + 1 == 1) {
-                things = 'one';
-            }else if (j + 1 == 2) {
-                things = 'two';
-            }else if (j + 1 == 3) {
-                things = 'three';
-            }else{
-                things = 'four';
-            }
-            // document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = arr[j][i];
-            document.querySelector(`.display${[j+1]}-${[i+1]}`).style.content = arr[j][i];
+            document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = arr[j][i];
+            document.querySelector(`.display${[j+1]}-${[i+1]}`).innerHTML = arr[j][i];
             console.log(arr[j][i]);
         }
     }
