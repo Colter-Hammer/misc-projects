@@ -12,21 +12,21 @@
 ========================================================================= */
 
 // Variables
-
 let colors;
 let tiny = [];
 let variation = [];
 let arr = [];
 
 function main() {
+    tiny = [];
     colors = document.querySelector('#input1').value.split(',');
 
-    // Check colors to make sure they are showing up correctly
-    console.log(colors);
-
+    // add colors an array that uses the tinycolor format.
     colors.forEach(color => {
         tiny.push(tinycolor(color));
     });
+    console.log(tiny);
+    console.log(colors);
 
     // call monochromatic() to get variations of the colors
     // return an array of varied colors
@@ -34,7 +34,7 @@ function main() {
 
     // change from HSV code to hex
     toHex(variation);
-    console.log(arr);
+    // console.log(arr);
 
     // Apply hex code to div background
     applyHex(arr);
@@ -42,6 +42,7 @@ function main() {
 
 // monochromatic returns 6 variations of the colors given
 function monochromatic(color) {
+    variation = [];
     color.forEach(color => {
         variation.push(color.monochromatic());
     });
@@ -50,20 +51,21 @@ function monochromatic(color) {
 
 // change from HSV to hex
 function toHex(array) {
+    arr = [];
     for (let i = 0; i < array.length; i++) {
         arr[i] = array[i].map(hsv => hsv.toHexString());
-        console.log(arr[i]);
+        // console.log(arr[i]);
     }
     return arr;
 }
 
 // apply hex code to div background color
 function applyHex(arr) {
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < tiny.length; j++) {
         for (let i = 0; i < 6; i++) {
             document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = arr[j][i];
-            document.querySelector(`.display${[j+1]}-${[i+1]}`).innerHTML = arr[j][i];
-            console.log(arr[j][i]);
+            document.querySelector(`.color${[j+1]}-${[i+1]}`).innerHTML = arr[j][i];
+            // console.log(arr[j][i]);
         }
     }
 }
