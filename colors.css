@@ -1,10 +1,20 @@
 .inputSection {
     margin: 10px;
+    height: 170px;
 }
 
 textarea {
     display: block;
     width: 300px;
+    height: 150px;
+}
+
+#variationAmount {
+    position: relative;
+    bottom: 221.4px;
+    left: 310px;
+    /* height: 75px;
+    width: 100px; */
 }
 
 .colors { 
@@ -12,13 +22,15 @@ textarea {
     flex-direction: row;
     flex-wrap: nowrap;
     margin-top: 1px;
+    justify-content: flex-start;
+    width: fit-content;
 }
 
 .color {
-    width: 200px;
-    height: 200px;
-    line-height: 200px;
-    font-size: 2.5em;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    font-size: 2em;
     text-align: center;
     color: white;
     font-weight: 700px;
