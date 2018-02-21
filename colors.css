@@ -2,23 +2,25 @@
     margin: 10px;
 }
 
-
+textarea {
+    display: block;
+    width: 300px;
+}
 
 .colors { 
-    display: inline-flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
+    margin-top: 1px;
 }
 
 .color {
-    color: black;
     width: 200px;
     height: 200px;
     line-height: 200px;
-    text-align: center;
     font-size: 2.5em;
+    text-align: center;
     color: white;
+    font-weight: 700px;
     -webkit-text-stroke: 1px black;
 }

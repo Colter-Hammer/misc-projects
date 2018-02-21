@@ -9,63 +9,103 @@
 *      b. return an array of arrays consisting of the different colors
 * 4. Call a function to set the colors to the div elements in the HTML
 *      a. 
-========================================================================= */
 
-// Variables
-let colors;
-let tiny = [];
-let variation = [];
-let arr = [];
+
+****do tomorrow****
+* Add comments
+* give the user an option of how many different color variations to output
+* change map to use the number of variations
+========================================================================= */
+/* eslint no-unused-vars:0 */
+function convertColor(colorValue) {
+       
+    let colorArray = tinycolor(colorValue)
+        // gets arrays of colors based on
+        .monochromatic(12)
+        .sort((a, b) => a.getLuminance() - b.getLuminance())
+        // lsdfjlskd
+        .map(color => color.toHexString());
+
+    return colorArray;
+}
+
+function makeColorDivHTML(colorList){
+    let htmlOut = '<div class="colors">';
+    // make the html for each color in the array and then join to one big string
+    htmlOut += colorList
+        .map(color => `<div class="color" style="background-color: ${color};" >${color}</div>`)
+        .join('');
+
+
+    htmlOut += '</div>';
+    return htmlOut;
+}
+
+
+
+console.log('end:', convertColor('red'));
+
+// // Variables
+// let colors;
+// let tiny;
+// let variation;
+// let arr;
+
 
 function main() {
-    tiny = [];
-    colors = document.querySelector('#input1').value.split(',');
+    let htmlString,
+        colors = document.querySelector('#colorInput').value.split('\n');
 
     // add colors an array that uses the tinycolor format.
-    colors.forEach(color => {
-        tiny.push(tinycolor(color));
-    });
-    console.log(tiny);
-    console.log(colors);
+    htmlString = colors
+        .map(convertColor)
+        .map(makeColorDivHTML)
+        .join('');
 
-    // call monochromatic() to get variations of the colors
-    // return an array of varied colors
-    monochromatic(tiny);
+    document.querySelector(`#colorSquares`).innerHTML = htmlString;
 
-    // change from HSV code to hex
-    toHex(variation);
-    // console.log(arr);
 
-    // Apply hex code to div background
-    applyHex(arr);
+    console.log(htmlString);
+
+
 }
 
-// monochromatic returns 6 variations of the colors given
-function monochromatic(color) {
-    variation = [];
-    color.forEach(color => {
-        variation.push(color.monochromatic());
-    });
-    return variation;
-}
+document.querySelector('#things').addEventListener('click', main);
 
-// change from HSV to hex
-function toHex(array) {
-    arr = [];
-    for (let i = 0; i < array.length; i++) {
-        arr[i] = array[i].map(hsv => hsv.toHexString());
-        // console.log(arr[i]);
-    }
-    return arr;
-}
+// // monochromatic returns 6 variations of the colors given
+// function monochromatic(color) {
+//     variation = [];
+//     color.forEach(color => {
+//         variation.push(color.monochromatic());
+//     });
+//     return variation;
+// }
 
-// apply hex code to div background color
-function applyHex(arr) {
-    for (let j = 0; j < tiny.length; j++) {
-        for (let i = 0; i < 6; i++) {
-            document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = arr[j][i];
-            document.querySelector(`.color${[j+1]}-${[i+1]}`).innerHTML = arr[j][i];
-            // console.log(arr[j][i]);
-        }
-    }
-}
+// // change from HSV to hex
+// function toHex(array) {
+//     arr = [];
+//     for (let i = 0; i < array.length; i++) {
+//         arr[i] = array[i].map(hsv => hsv.toHexString());
+//         // console.log(arr[i]);
+//     }
+//     return arr;
+// }
+
+// // apply hex code to div background color
+// function applyHex(arr) {
+//     for (let j = 0; j < tiny.length; j++) {
+//         for (let i = 0; i < 6; i++) {
+//             document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = arr[j][i];
+//             document.querySelector(`.color${[j+1]}-${[i+1]}`).innerHTML = arr[j][i];
+//         }
+//     }
+// }
+
+// // function reset() {
+// //     for (let j = 0; j < tiny.length; j++) {
+// //         for (let i = 0; i < 6; i++) {
+// //             document.querySelector(`.color${[j+1]}-${[i+1]}`).style.backgroundColor = 'white';
+// //             document.querySelector(`.color${[j+1]}-${[i+1]}`).innerHTML = '';
+// //         }
+// //     }
+// // }
