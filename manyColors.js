@@ -8,23 +8,24 @@
 // *      a. Use monochromatic to create the variations  
 // *      b. return an array of arrays consisting of the different colors  
 // * 4. Call a function to set the colors to the div elements in the HTML  
-// *      a. 
-
-
-// ****do tomorrow****
-// * give the user an option of how many different color variations to output
-// * change map to use the number of variations
 // ========================================================================= */
-/* eslint no-unused-vars:0, no-console:0, quotes: 1 */
+/* eslint no-unused-vars:0, no-console:0, quotes: 0 */
 
+/** 
+ * 1. Apply the tinycolor library to the value received as a parameter.
+ * 2. Call the tinycolor.monochromatic function which will give variations of the color to an amount specified as a parameter.
+ * 3. Sort the colors given through monochromatic in order from darkest from lightest.
+ * 4. change all the colors given to their respective hex code.
+ 
+ 
+ receives as input a color, and returns an array of variations of those colors using the tinycolor.monochromatic library. Sorted colors from darkest to lightest.
+ */
 
-// receives as input a color, and returns an array of variations of those colors using the tinycolor.monochromatic library. Sorted colors from darkest to lightest.
 function convertColor(colorValue) {
     let amount = document.querySelector('#colorVariation').value,
         colorArray = tinycolor(colorValue)
         // gets arrays of colors from library allowing
             .monochromatic(amount)
-            // .tetrad(amount)
             // sort colors from monochromatic from dark to light
             .sort((a, b) => a.getLuminance() - b.getLuminance())
             // change from previous format to hex
@@ -33,6 +34,11 @@ function convertColor(colorValue) {
     return colorArray;
 }
 
+/**
+ * 
+ * 
+ * @param {array} colorList the array of colors to be made into HTML script  
+ */
 function makeColorDivHTML(colorList) {
     let htmlOut = '<div class="colors">';
     // make the html for each color in the array and then join to one big string
