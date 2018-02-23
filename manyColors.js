@@ -34,6 +34,11 @@ function convertColor(colorValue) {
     return colorArray;
 }
 
+function splitOnComma(string) {
+
+    return string.split(/\s*,\s*/);
+}
+
 /**
  * 
  * 
@@ -51,14 +56,17 @@ function makeColorDivHTML(colorList) {
     return htmlOut;
 }
 
+
 function main() {
     let htmlString,
         colors = document.querySelector('#colorInput').value.split('\n');
 
     htmlString = colors
         // Returns a multilayered array of the hex codes for the colors and variations
-        .map(convertColor)
-
+        //.map(convertColor)
+        
+        .map(splitOnComma)
+        
         // Returns a single array containing all the divs created in makeColorDivHTML function
         .map(makeColorDivHTML)
 
